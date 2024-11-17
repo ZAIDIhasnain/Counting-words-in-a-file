@@ -1,0 +1,28 @@
+#Frequency Analysis of Words in a Text
+#step 1 read the file
+import string
+file_name = input ('Enter the name of the file with its format: ')
+try:
+    with open (file_name,'r') as file:
+        text = file.read()
+        print('File Content: ')
+        print(text)
+except FileNotFoundError:
+    print('File not found. Please check the file name again and retry.')
+    exit()
+
+#determine the frequency of each word.
+
+#Clean the text by:
+#Converting to lowercase.
+#Removing punctuation.
+#Splitting the text into individual words.
+text= text.lower()
+text = text.translate(str.maketrans('','',string.punctuation))
+count = {}
+for i in text.split():
+    count[i] = count.get(i,0)+1
+unsorted_words = count.items()
+sorted_words = sorted(count.items(),key=lambda a : a[1], reverse=True)
+for words,frequency in sorted_words:
+    print(f'{words}:{frequency}')
